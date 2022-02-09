@@ -76,11 +76,11 @@ then
 
 			if [[ "${#USR_RQST_LST[@]}" -ne 0 ]]; then
 				echo "Cloning ${#USR_RQST_LST[@]} repos..."
-				for IDX in "${!USR_RQST_LST[@]}"; do
-					echo "${REPO_URL_LST[$IDX]}" |
+				for IDX in "${USR_RQST_LST[@]}"; do
+					echo "${REPO_URL_LST[$IDX - 1]}" |
 						cut -d "\"" -f 2 |
 						xargs -I {} git clone -q {}
-					echo "${REPO_NAME_LST[$IDX]} cloned"
+					echo "${REPO_NAME_LST[$IDX - 1]} cloned"
 				done
 				break
 			else
